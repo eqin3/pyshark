@@ -74,6 +74,8 @@ class LiveCapture(Capture):
         all_interfaces_names = tshark.get_all_tshark_interfaces_names(self.tshark_path)
         all_interfaces_lowercase = [interface.lower() for interface in all_interfaces_names]
         for each_interface in self.interfaces:
+            if 'rpcap://' in each_interface:
+                continue
             if each_interface.isnumeric():
                 continue
             if each_interface.lower() not in all_interfaces_lowercase:
