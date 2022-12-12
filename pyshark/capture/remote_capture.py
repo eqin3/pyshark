@@ -4,7 +4,7 @@ from pyshark import LiveCapture
 class RemoteCapture(LiveCapture):
     """A capture which is performed on a remote machine which has an rpcapd service running."""
 
-    def __init__(self, remote_host, remote_interface, remote_port=2002, bpf_filter=None, only_summaries=False,
+    def __init__(self, remote_host, interface, remote_port=2002, bpf_filter=None, only_summaries=False,
                  decryption_key=None, encryption_type='wpa-pwk', decode_as=None,
                  disable_protocol=None,tshark_path=None, override_prefs=None, eventloop=None, debug=False):
         """
@@ -29,7 +29,7 @@ class RemoteCapture(LiveCapture):
         :param override_prefs: A dictionary of tshark preferences to override, {PREFERENCE_NAME: PREFERENCE_VALUE, ...}.
         :param disable_protocol: Tells tshark to remove a dissector for a specifc protocol.
         """
-        interface = 'rpcap://%s:%d/%s' % (remote_host, remote_port, remote_interface)
+        interface = 'rpcap://%s:%d/%s' % (remote_host, remote_port, interface)
         super(RemoteCapture, self).__init__(interface, bpf_filter=bpf_filter, only_summaries=only_summaries,
                                             decryption_key=decryption_key, encryption_type=encryption_type,
                                             tshark_path=tshark_path, decode_as=decode_as,  disable_protocol=disable_protocol,
