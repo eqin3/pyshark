@@ -5,7 +5,7 @@ class RemoteCapture(LiveCapture):
     """A capture which is performed on a remote machine which has an rpcapd service running."""
 
     def __init__(self, remote_host, interface, remote_port=2002, bpf_filter=None, only_summaries=False,
-                 decryption_key=None, encryption_type='wpa-pwk', decode_as=None,
+                 decryption_key=None, encryption_type='wpa-pwk', decode_as=None, output_file=None,
                  disable_protocol=None,tshark_path=None, override_prefs=None, eventloop=None, debug=False):
         """
         Creates a new remote capture which will connect to a remote machine which is running rpcapd. Use the sniff()
@@ -32,6 +32,6 @@ class RemoteCapture(LiveCapture):
         interface = 'rpcap://%s:%d/%s' % (remote_host, remote_port, interface)
         super(RemoteCapture, self).__init__(interface, bpf_filter=bpf_filter, only_summaries=only_summaries,
                                             decryption_key=decryption_key, encryption_type=encryption_type,
-                                            tshark_path=tshark_path, decode_as=decode_as,  disable_protocol=disable_protocol,
+                                            tshark_path=tshark_path, decode_as=decode_as, output_file=output_file, disable_protocol=disable_protocol,
                                             override_prefs=override_prefs, eventloop=eventloop,
                                             debug=debug)
