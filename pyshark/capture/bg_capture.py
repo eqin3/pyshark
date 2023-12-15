@@ -53,7 +53,7 @@ class BgCapture(Capture):
         self.bpf_filter = bpf_filter
         self.monitor_mode = monitor_mode
         # self._output_file = '/root/pys.pcap'
-        self._output_file = "/var/tmp/tshark_"+hashlib.md5(str(uuid.uuid4()).encode('utf-8')).hexdigest()+".pcap"
+        self._output_file = output_file     # "/var/tmp/tshark_"+hashlib.md5(str(uuid.uuid4()).encode('utf-8')).hexdigest()+".pcap"
 
         if sys.platform == "win32" and monitor_mode:
             raise WindowsError("Monitor mode is not supported by the Windows platform")
@@ -106,7 +106,7 @@ class BgCapture(Capture):
         def _del_output_file():
             if os.path.isfile(self._output_file):
                 os.remove(self._output_file)
-        atexit.register(_del_output_file)
+        # atexit.register(_del_output_file)
 
         return pcap
 
